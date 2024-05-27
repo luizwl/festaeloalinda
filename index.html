@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Aniversário - Eloa</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-wrap: wrap;
+        }
+        .container, .confirmation-list {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 10px;
+            text-align: center;
+        }
+        h1 {
+            color: #ff69b4;
+            font-size: 24px;
+        }
+        p {
+            color: #333;
+            margin: 10px 0;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            background-color: #ff69b4;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #ff1493;
+        }
+        .confirmation-list h2 {
+            color: #333;
+            font-size: 20px;
+        }
+        .confirmation-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .confirmation-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        .photos-link {
+            display: block;
+            margin-bottom: 20px;
+            color: #1e90ff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .photos-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Convite de Aniversário</h1>
+        <p>Você está convidado para o aniversário de Eloa!</p>
+        <p>Data: 21 de Julho</p>
+        <p>Hora: 18:00</p>
+        <p>Local: Rua das Flores, 123</p>
+        <a href="fotos-chacara.html" target="_blank" class="photos-link">Acessar fotos da chácara</a>
+    </div>
+    <div class="confirmation-list">
+        <h2>Lista de Confirmados</h2>
+        <ul id="lista-confirmados">
+            <!-- Nomes confirmados aparecerão aqui -->
+            <?php
+            // Exibir nomes confirmados do servidor
+            $file = 'confirmados.txt';
+            if (file_exists($file)) {
+                $confirmados = file($file, FILE_IGNORE_NEW_LINES);
+                foreach ($confirmados as $nome) {
+                    echo "<li>$nome</li>";
+                }
+            }
+            ?>
+        </ul>
+    </div>
+    <div>
+        <form method="post" action="confirmar_presenca.php">
+            <label for="nome">Seu Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            <input type="submit" value="Confirmar Presença">
+        </form>
+    </div>
+</body>
+</html>
